@@ -1,38 +1,20 @@
-// Sidebar Toggle
-const sidebar = document.querySelector('.sidebar');
-const toggleButton = document.querySelector('.toggle-sidebar');
-const body = document.body;
-const content = document.querySelector('.content');
-const cards = document.querySelectorAll('.card');
-const sectionTitles = document.querySelectorAll('.section-title');
-const markdownInput = document.getElementById('markdown-input');
-const markdownPreview = document.getElementById('markdown-preview');
+// Dark Mode Toggle
 const darkModeToggle = document.querySelector('.dark-mode-toggle');
+const body = document.body;
+const sidebar = document.querySelector('.sidebar');
+const pages = document.querySelectorAll('.page');
+const pageLinks = document.querySelectorAll('.sidebar a');
+const editButtons = document.querySelectorAll('.edit-page');
 
 // Check for saved theme in local storage
 if (localStorage.getItem('dark-mode') === 'enabled') {
     body.classList.add('dark-mode');
-    sidebar.classList.add('dark-mode');
-    content.classList.add('dark-mode');
-    cards.forEach(card => card.classList.add('dark-mode'));
-    sectionTitles.forEach(title => title.classList.add('dark-mode'));
 }
-
-// Toggle sidebar collapse
-toggleButton.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    content.classList.toggle('collapsed');
-});
 
 // Toggle dark mode
 darkModeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    sidebar.classList.toggle('dark-mode');
-    content.classList.toggle('dark-mode');
-    cards.forEach(card => card.classList.toggle('dark-mode'));
-    sectionTitles.forEach(title => title.classList.toggle('dark-mode'));
 
-    // Save the current theme to local storage
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('dark-mode', 'enabled');
     } else {
@@ -40,16 +22,41 @@ darkModeToggle.addEventListener('click', () => {
     }
 });
 
-// Collapsible Sections
-const sectionTitlesList = document.querySelectorAll('.section-title');
+// Sidebar Toggle
+document.querySelector('.toggle-sidebar').addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+    document.querySelector('.main-content').classList.toggle('collapsed');
+});
 
-sectionTitlesList.forEach(title => {
-    title.addEventListener('click', () => {
-        title.nextElementSibling.classList.toggle('hidden');
+// Page Navigation
+pageLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetPage = document.querySelector(`#${link.dataset.page}`);
+
+        pages.forEach(page => page.classList.remove('active'));
+        targetPage.classList.add('active');
     });
 });
 
-// Markdown Preview
-markdownInput.addEventListener('input', () => {
-    markdownPreview.innerHTML = marked(markdownInput.value);
+// Initialize Quill Editor (Optional, for a richer text editor)
+const quill = new Quill('#editor-container', {
+    theme: 'snow',
+    modules: {
+        toolbar: [
+            [{ 'header': '1' }, { 'header': '2' }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['link', 'image']
+        ]
+    }
+});
+
+// Editing Mode
+editButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const contentDiv = button.nextElementSibling;
+        contentDiv.contentEditable = contentDiv.contentEditable === "true" ? "false" : "true";
+        contentDiv.focus();
+    });
 });
