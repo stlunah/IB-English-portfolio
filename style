@@ -91,3 +91,40 @@ textarea {
 .section {
     margin-bottom: 20px;
 }
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.sidebar.dark-mode {
+    background-color: #1f1f1f;
+}
+
+.content.dark-mode {
+    background-color: #121212;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.section-title.dark-mode {
+    color: #bb86fc;
+}
+
+/* Toggle Button */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+}
