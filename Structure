@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notion-like IB Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2>My Portfolio</h2>
+            <ul>
+                <li><a href="#assignments">Assignments</a></li>
+                <li><a href="#notes">Notes</a></li>
+                <li><a href="#reflections">Reflections</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <header>
+                <h1>Welcome to Your IB Portfolio</h1>
+                <p>Track your progress, assignments, and reflections.</p>
+            </header>
+
+            <!-- Assignments Section -->
+            <section id="assignments" class="section">
+                <h2>Assignments</h2>
+                <div class="card">
+                    <h3>Assignment 1</h3>
+                    <p>Details about your assignment go here...</p>
+                </div>
+            </section>
+
+            <!-- Notes Section -->
+            <section id="notes" class="section">
+                <h2>Notes</h2>
+                <textarea id="notes-area" placeholder="Write your notes here..."></textarea>
+            </section>
+
+            <!-- Reflections Section -->
+            <section id="reflections" class="section">
+                <h2>Reflections</h2>
+                <div class="card">
+                    <p>Reflect on your learning experiences here...</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
