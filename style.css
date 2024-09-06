@@ -3,78 +3,82 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    display: flex;
-    height: 100vh;
-    background-color: #f4f4f9;
+    background-color: #f5f6fa;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Container */
-.container {
-    display: flex;
-    width: 100%;
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
-/* Sidebar */
 .sidebar {
     width: 250px;
-    background-color: #2f3437;
+    background-color: #202124;
+    color: white;
+    position: fixed;
+    height: 100%;
     padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.dark-mode {
+    background-color: #1f1f1f;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.toggle-sidebar {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    background: none;
+    border: none;
     color: white;
 }
 
-.sidebar h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style: none;
-}
-
-.sidebar ul li {
-    margin: 10px 0;
-}
-
-.sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1em;
-}
-
-.sidebar ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Content */
 .content {
-    flex-grow: 1;
+    margin-left: 250px;
     padding: 20px;
-    overflow-y: auto;
+    transition: margin-left 0.3s ease, background-color 0.3s ease;
 }
 
-header {
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 2.5em;
-}
-
-h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
+.content.dark-mode {
+    background-color: #121212;
 }
 
 .card {
-    background-color: white;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.section-title {
+    font-size: 1.5em;
+    color: #1a73e8;
+    cursor: pointer;
+}
+
+.section-title.dark-mode {
+    color: #bb86fc;
 }
 
 textarea {
@@ -85,37 +89,25 @@ textarea {
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Section styling */
-.section {
-    margin-bottom: 20px;
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
-}
-
-.sidebar.dark-mode {
-    background-color: #1f1f1f;
-}
-
-.content.dark-mode {
-    background-color: #121212;
-}
-
-.card.dark-mode {
+textarea.dark-mode {
     background-color: #1e1e1e;
     color: #e0e0e0;
 }
 
-.section-title.dark-mode {
-    color: #bb86fc;
+/* Collapsible Section Styles */
+.section-content {
+    display: block;
+    transition: all 0.3s ease;
 }
 
-/* Toggle Button */
+.section-content.hidden {
+    display: none;
+}
+
+/* Dark Mode Toggle Button */
 .dark-mode-toggle {
     position: fixed;
     top: 20px;
@@ -127,4 +119,9 @@ body.dark-mode {
     padding: 10px 15px;
     cursor: pointer;
     font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    background-color: #9f67d4;
 }
