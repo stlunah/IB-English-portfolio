@@ -1,23 +1,13 @@
-// Saving notes to local storage
-const notesTextarea = document.getElementById('notes-area');
-
-notesTextarea.addEventListener('input', () => {
-    localStorage.setItem('notes', notesTextarea.value);
-});
-
-// Load saved notes from local storage
-document.addEventListener('DOMContentLoaded', () => {
-    const savedNotes = localStorage.getItem('notes');
-    if (savedNotes) {
-        notesTextarea.value = savedNotes;
-    }
-
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
-const body = document.body;
+// Sidebar Toggle
 const sidebar = document.querySelector('.sidebar');
+const toggleButton = document.querySelector('.toggle-sidebar');
+const body = document.body;
 const content = document.querySelector('.content');
 const cards = document.querySelectorAll('.card');
 const sectionTitles = document.querySelectorAll('.section-title');
+const markdownInput = document.getElementById('markdown-input');
+const markdownPreview = document.getElementById('markdown-preview');
+const darkModeToggle = document.querySelector('.dark-mode-toggle');
 
 // Check for saved theme in local storage
 if (localStorage.getItem('dark-mode') === 'enabled') {
@@ -27,6 +17,12 @@ if (localStorage.getItem('dark-mode') === 'enabled') {
     cards.forEach(card => card.classList.add('dark-mode'));
     sectionTitles.forEach(title => title.classList.add('dark-mode'));
 }
+
+// Toggle sidebar collapse
+toggleButton.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+    content.classList.toggle('collapsed');
+});
 
 // Toggle dark mode
 darkModeToggle.addEventListener('click', () => {
@@ -42,4 +38,18 @@ darkModeToggle.addEventListener('click', () => {
     } else {
         localStorage.setItem('dark-mode', 'disabled');
     }
+});
+
+// Collapsible Sections
+const sectionTitlesList = document.querySelectorAll('.section-title');
+
+sectionTitlesList.forEach(title => {
+    title.addEventListener('click', () => {
+        title.nextElementSibling.classList.toggle('hidden');
+    });
+});
+
+// Markdown Preview
+markdownInput.addEventListener('input', () => {
+    markdownPreview.innerHTML = marked(markdownInput.value);
 });
