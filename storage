@@ -1,0 +1,14 @@
+// Saving notes to local storage
+const notesTextarea = document.getElementById('notes-area');
+
+notesTextarea.addEventListener('input', () => {
+    localStorage.setItem('notes', notesTextarea.value);
+});
+
+// Load saved notes from local storage
+document.addEventListener('DOMContentLoaded', () => {
+    const savedNotes = localStorage.getItem('notes');
+    if (savedNotes) {
+        notesTextarea.value = savedNotes;
+    }
+});
